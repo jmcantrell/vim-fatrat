@@ -11,8 +11,13 @@ let g:fatrat_loaded = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-command! -bar -nargs=? -complete=filetype FatRatEdit :call s:EditScripts(<q-args>)
-command! -bar -nargs=? -complete=filetype FatRatList :call s:ListScripts(<q-args>)
+if v:version < 703
+    command! -bar -nargs=? FatRatEdit :call s:EditScripts(<q-args>)
+    command! -bar -nargs=? FatRatList :call s:ListScripts(<q-args>)
+else
+    command! -bar -nargs=? -complete=filetype FatRatEdit :call s:EditScripts(<q-args>)
+    command! -bar -nargs=? -complete=filetype FatRatList :call s:ListScripts(<q-args>)
+endif
 
 function! s:EditScripts(type)
     for script in s:GetScripts(a:type)
