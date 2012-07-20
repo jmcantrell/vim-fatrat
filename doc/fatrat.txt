@@ -1,14 +1,14 @@
 *fatrat.txt*  Work with all the runtime files for a filetype
 
-Author:  Jeremy Cantrell <jmcantrell@gmail.com>         *fatrat-author*
+Author:  Jeremy Cantrell <jmcantrell@gmail.com>  *fatrat-author*
 License: Same terms as Vim itself (see |license|)
 
-INTRODUCTION                                        *fatrat* *fatrat.vim*
+INTRODUCTION                                     *fatrat* *fatrat.vim*
 
 The fatrat plugin provides ways to work with all the runtime files for
 a particular filetype.
 
-Name explanation:                                          *fatrat-wtf*
+Name explanation:                                *fatrat-wtf*
 
     filetype + runtime = ft + rt = fAt + rAt = fatrat
 
@@ -21,19 +21,19 @@ It's catchy and fun! ... and ftrt is really hard to say.
                          ',|  \    |__.'
                          '~  '~----''
 
-COMMANDS                                              *fatrat-commands*
+COMMANDS                                         *fatrat-commands*
 
-:FatRatList [filetype]    List all runtime files for the given filetype.
-                          If the filetype is not given, use the current
-                          filetype (&ft).
+:FatRatList [filetype]                           *:FatRatList*
+    List all runtime files for the given filetype. If the filetype is not
+    given, use the current filetype (&ft).
 
-:FatRatEdit [filetype]    Edit all runtime files for the given filetype.
-                          If the filetype is not given, use the current
-                          filetype (&ft).
+:FatRatEdit [filetype]                           *:FatRatEdit*
+    Edit all runtime files for the given filetype. If the filetype is not
+    given, use the current filetype (&ft).
 
 CONFIGURATION                                    *fatrat-configuration*
 
-g:fatrat_loaded                                       *g:fatrat_loaded*
+g:fatrat_loaded                                  *g:fatrat_loaded*
     If set in your |vimrc|, fatrat.vim is not loaded.
 
 vim:tw=78:et:ft=help:norl:
