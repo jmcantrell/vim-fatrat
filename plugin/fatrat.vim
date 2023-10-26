@@ -1,27 +1,17 @@
-" Filename:      fatrat.vim
-" Description:   Open all the runtime files for a filetype
-" Maintainer:    Jeremy Cantrell <jmcantrell@gmail.com>
-
-if exists('g:fatrat_loaded') || &cp
+if exists('g:fatrat_loaded')
     finish
 endif
-
 let g:fatrat_loaded = 1
 
-let s:save_cpo = &cpo
-set cpo&vim
+let s:save_cpoptions = &cpoptions
+set cpoptions&vim
 
-if v:version < 703
-    command! -bar -nargs=? FatRatEdit :call s:EditScripts(<q-args>)
-    command! -bar -nargs=? FatRatList :call s:ListScripts(<q-args>)
-else
-    command! -bar -nargs=? -complete=filetype FatRatEdit :call s:EditScripts(<q-args>)
-    command! -bar -nargs=? -complete=filetype FatRatList :call s:ListScripts(<q-args>)
-endif
+command! -bar -nargs=? -complete=filetype FatRatEdit :call s:EditScripts(<q-args>)
+command! -bar -nargs=? -complete=filetype FatRatList :call s:ListScripts(<q-args>)
 
 function! s:EditScripts(type)
     for script in s:GetScripts(a:type)
-        execute 'edit '.script
+        execute 'edit ' . script
     endfor
 endfunction
 
@@ -32,15 +22,15 @@ function! s:ListScripts(type)
 endfunction
 
 function! s:GetScripts(type)
-    let ft = a:type
-    if len(ft) == 0
-        let ft = &ft
+    let filetype = a:type
+    if len(filetype) == 0
+        let filetype = &filetype
     endif
     let scripts = []
-    if len(ft) > 0
+    if len(filetype) > 0
         for dir in ['ftplugin', 'syntax', 'indent']
-            for p in ['.vim', '/*.vim', '_*.vim']
-                call extend(scripts, s:GetFiles(dir.'/'.ft.p))
+            for suffix in ['.vim', '/*.vim', '_*.vim']
+                call extend(scripts, s:GetFiles(dir . '/' . filetype . suffix))
             endfor
         endfor
     endif
@@ -48,7 +38,7 @@ function! s:GetScripts(type)
 endfunction
 
 function! s:GetFiles(pattern)
-    return split(globpath(&rtp, a:pattern), '\n')
+    return split(globpath(&runtimepath, a:pattern), '\n')
 endfunction
 
-let &cpo = s:save_cpo
+let &cpoptions = s:save_cpoptions
