@@ -8,7 +8,7 @@ Install using your favorite package manager, or use Vim's built-in package suppo
 
 ```sh
 mkdir -p ~/.vim/pack/default/start
-git clone https://git.sr.ht/~jmcantrell/vim-fatrat ~/.vim/pack/default/start/fatrat
+git clone $REPO_URL/vim-fatrat ~/.vim/pack/default/start/fatrat
 vim -c "helptags fatrat/doc" -c q
 ```
 
